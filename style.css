@@ -71,6 +71,7 @@ body {
 .dropdown-container {
     display: flex;
     gap: 2rem;
+    position: relative;
 }
 
 .permanent {
@@ -79,12 +80,59 @@ body {
     align-items: center;
 }
 
+.permanent:hover {
+    cursor: pointer;
+}
+
+.permanent * {
+    pointer-events: none;
+}
+
 .permanent:hover a {
     text-decoration: underline;
 }
 
+.fa-chevron-down {
+    transition: all 0.3s ease;
+}
+/* no space between classes means select all items with BOTH class names! */
+.fa-chevron-down.up {
+    transform: rotate(-180deg);
+}
+
 .dropdown {
-    display: none;
+    width: 170px;
+    display: flex;
+    position: absolute;
+    top: 2rem;
+    background-color: white;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1.5rem;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.dropdown a {
+    color: var(--navy);
+    font-size: 0.9rem;
+}
+
+.dropdown a:hover {
+    font-weight: 600;
+}
+
+.expanded {
+    height: auto;
+    opacity: 1;
+    padding: 1.5rem;
+}
+
+/* translation: select the dropdown-container child div that contains a child with the class 'expanded', THEN assign the <a> tag of its child that has class 'permanent' */
+.dropdown-container>div:has(.expanded)>.permanent>a {
+    text-decoration: underline;
 }
 
 .nav-right {
@@ -103,6 +151,10 @@ body {
     background-color: transparent;
     color: white;
     border: none;
+}
+
+#login:hover {
+    text-decoration: underline;
 }
 
 #signup {
@@ -175,7 +227,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5rem;
+    padding: 8rem;
 }
 
 .section-wrapper {
@@ -192,7 +244,7 @@ h1 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: -19rem;
+    right: -23rem;
     height: 110%;
 }
 
@@ -210,7 +262,7 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 5rem;
-    width: 37%;
+    width: 45%;
 }
 
 .block {
@@ -311,6 +363,7 @@ h3 {
     height: 40vh;
     background-color: var(--footer-bg-color);
     padding: 5rem 0;
+    border-top-right-radius: 100px;
 }
 
 .footer>div {
@@ -351,4 +404,9 @@ li:hover {
     color: var(--red); 
     font-size: inherit;
     text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.attribution a:hover {
+    color: var(--pink);
 }
